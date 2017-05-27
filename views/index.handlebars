@@ -1,0 +1,51 @@
+<h1>Welcome to Timmys!</h1>
+
+
+<div class="container">
+	<div class="col-xs-12">
+		<h2>Add a Burger</h2>
+		<form class="create-update-form" action="/" method="POST">
+
+		<div class="input-group">
+			<input type="text" id="ca" name="name" class="form-control">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit">Add Burger</button>
+			</span>
+		</div>
+
+		
+		</form>
+	</div>
+	<div class="container col-xs-6">
+		<h2>Edible Burgers</h2>
+		<ul class="list-group-table-of-contents">
+			{{#each burgers}}
+			{{#unless this.devoured}}
+				<li class="list-group-item">
+					{{this.burger_name}} : {{this.date}}
+
+					<form action="/{{this.id}}?_method=PUT" method="POST">
+					<input type="hidden" name="devoured" value="true">
+					<button type="submit" class="btn btn-danger">DEVOUR!</button>
+					</form>
+
+
+				</li>
+			{{/unless}}
+			{{/each}}
+		</ul>
+	</div>
+	<div class="container col-xs-6">
+	<h2>Devoured Carnage</h2>
+
+		<ul class="list-group-table-of-contents">
+		{{#each burgers}}
+		{{#if this.devoured}}
+			<li class="list-group-item">
+				{{this.burger_name}}
+			</li>
+		{{/if}}
+		{{/each}}
+		</ul>
+	</div>
+</div>
